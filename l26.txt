@@ -1,19 +1,15 @@
-import java.util.*;
-// @lc code=start
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int slow=0; fast=0;
+        int slow=0; int fast=0;
         //如果数组长度为0
         if(nums.length==0)return 0;
         while(fast<nums.length){
-            if(nums[slow]!==nums[fast]){
+            if(nums[slow]!=nums[fast]){
+                slow++;//要先++，再赋值，否则第一个元素就没了
                 nums[slow]=nums[fast];
-                slow++;
             }
             fast++;
         }
-        return slow;
+        return ++slow;
     }
 }
-// @lc code=end
-
