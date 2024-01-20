@@ -1,0 +1,43 @@
+/*
+ * @lc app=leetcode.cn id=21 lang=java
+ *
+ * [21] 合并两个有序链表
+ */
+
+// @lc code=start
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        //虚拟头结点
+        ListNode ans=new ListNode(-1), chan=ans;
+        ListNode p1=list1;
+        ListNode p2=list2;
+
+        while(p1!=null && p2!=null){
+            if(p1.val>p2.val){
+                chan.next=p2;
+                p2=p2.next;
+                chan=chan.next;
+            }else{
+                chan.next=p1;
+                p1=p1.next;
+                chan=chan.next;
+            }
+        }
+        if(p1==null) chan.next=p2;
+        if(p2==null) chan.next=p1;
+
+        return ans.next;
+    }
+}
+// @lc code=end
+
